@@ -9,7 +9,7 @@ const urbanist = Urbanist({
 })
 
 export const metadata = {
-  title: 'BarberEasy Dashboard',
+  title: 'BarberEasy',
   description: 'Sistema de gestión para barbería',
 }
 
@@ -29,15 +29,15 @@ export default function RootLayout({
             <Home className="w-5 h-5 mr-3 relative top-[4px]" />
               Home
             </Link>
-            <Link href="/perfil" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
+            <Link href="/profile" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
               <User className="w-5 h-5 mr-3 relative top-[4px]" />  
               Perfil
             </Link>
-            <Link href="/servicios" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
+            <Link href="/catalog" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
               <Scissors className="w-5 h-5 mr-3 relative top-[4px]" />
               Servicios
             </Link>
-            <Link href="/turnos" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
+            <Link href="/turn" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
               <Calendar className="w-5 h-5 mr-3 relative top-[4px]" />
               Turnos
             </Link>
