@@ -27,7 +27,7 @@ export default function RootLayout({
           <nav className="flex flex-col gap-6">
             <Link href="/" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
             <Home className="w-5 h-5 mr-3 relative top-[4px]" />
-              Home
+              Inicio
             </Link>
             <Link href="/profile" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
               <User className="w-5 h-5 mr-3 relative top-[4px]" />  
