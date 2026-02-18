@@ -1,25 +1,25 @@
 import { useState } from "react";
-import type { Catalog } from "@/types/catalog"; 
+import type { Service } from "@/types/service"; 
 
-type CatalogInput = Omit<Catalog, "id">;
+type ServiceInput = Omit<Service, "id">;
 
 export default function FormModal({
   isOpen,
   onClose,
   onSave,
-  onDelete,  // ← nueva prop, opcional
-  catalog,
+  onDelete,
+  service,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (service: CatalogInput) => void;
-  onDelete?: () => void;  // ← solo existe si es edición
-  catalog?: Catalog;
+  onSave: (service: ServiceInput) => void;
+  onDelete?: () => void;
+  service?: Service;
 }) {
-  const [name, setName] = useState(catalog?.name || "");
-  const [description, setDescription] = useState(catalog?.description || "");
-  const [price, setPrice] = useState(catalog?.price?.toString() || "");
-  const [timeOnMinutes, setTimeOnMinutes] = useState(catalog?.timeOnMinutes?.toString() || "");
+  const [name, setName] = useState(service?.name || "");
+  const [description, setDescription] = useState(service?.description || "");
+  const [price, setPrice] = useState(service?.price?.toString() || "");
+  const [timeOnMinutes, setTimeOnMinutes] = useState(service?.timeOnMinutes?.toString() || "");
 
   if (!isOpen) return null;
 
@@ -66,7 +66,6 @@ export default function FormModal({
         </div>
 
         <div className="mt-4 flex justify-end gap-2">
-          {/* El botón solo aparece si onDelete existe, es decir, en modo edición */}
           {onDelete && (
             <button
               onClick={onDelete}

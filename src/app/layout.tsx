@@ -33,7 +33,7 @@ export default function RootLayout({
               <User className="w-5 h-5 mr-3 relative top-[4px]" />  
               Perfil
             </Link>
-            <Link href="/catalog" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
+            <Link href="/service" className="flex text-white text-xl no-underline hover:text-gray-200 pl-2">
               <Scissors className="w-5 h-5 mr-3 relative top-[4px]" />
               Servicios
             </Link>

@@ -1,7 +1,7 @@
-import { Catalog } from "@/types/catalog";
+import { Service } from "@/types/service";
 
-export default function CatalogCard({ catalog, onClick }: { catalog: Catalog | null, onClick?: () => void }) {
-  const isAddCard = catalog === null;
+export default function ServiceCard({ service, onClick }: { service: Service | null, onClick?: () => void }) {
+  const isAddCard = service === null;
   return (
     <div
       onClick={onClick}
@@ -17,14 +17,14 @@ export default function CatalogCard({ catalog, onClick }: { catalog: Catalog | n
         <>
           <div>
             <h3 className="text-lg font-semibold text-[#0a2f4a] mb-1 truncate">
-              {catalog.name}
+              {service.name}
             </h3>
             <p className="text-sm text-gray-700 line-clamp-3">
-              {catalog.description}
+              {service.description}
             </p>
           </div>
-          <p className="text-sm text-gray-700 font-medium">${catalog.price}</p>
-          <p className="text-sm text-gray-700">{catalog.timeOnMinutes} min</p>
+          <p className="text-sm text-gray-700 font-medium">${service.price}</p>
+          <p className="text-sm text-gray-700">{service.timeOnMinutes} min</p>
         </>
       )}
     </div>
