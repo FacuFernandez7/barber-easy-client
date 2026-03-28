@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Service } from "@/types/service";
-import { getServices, AddService, updateService, deleteService } from "@/services/service";
+import { getServices, AddService, updateService, deleteService, invalidateServicesCache } from "@/services/service";
 
 export function useService() {
   const [service, setService] = useState<Service[]>([]);
@@ -24,16 +24,19 @@ export function useService() {
   const handleSave = async (data: Omit<Service, "id">) => {
     if (selectedService) {
       const updated = await updateService(selectedService.id, data);
+      invalidateServicesCache();
       setService(prev => prev.map(item => item.id === updated.id ? updated : item));
     } else {
       const created = await AddService(data);
+      invalidateServicesCache();
       setService(prev => [...prev, created]);
     }
     closeModal();
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     await deleteService(id);
+    invalidateServicesCache();
     setService(prev => prev.filter(item => item.id !== id));
     closeModal();
   };
