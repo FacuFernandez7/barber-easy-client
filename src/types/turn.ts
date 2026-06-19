@@ -5,5 +5,5 @@ export type Turn = {
   appointmentDate: string  // ISO datetime, e.g. "2026-03-28T10:30:00"
   status: TurnStatus | null
   customerName: string
-  barberService: { id: string; name: string }
+  barberService: { id: string; name: string; timeOnMinutes?: number }
 }

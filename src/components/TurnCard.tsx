@@ -1,5 +1,5 @@
 import { Turn, TurnStatus } from "@/types/turn";
-import { Calendar, Clock, User, Scissors } from "lucide-react";
+import { Calendar, Clock, User, Scissors, Timer } from "lucide-react";
 
 const MONTHS = [
   "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -55,6 +55,12 @@ export default function TurnCard({
         <Scissors className="w-4 h-4 text-[#0094d9]" />
         <span className="text-sm">{turn.barberService.name}</span>
       </div>
+      {turn.barberService.timeOnMinutes != null && (
+        <div className="flex items-center gap-2 text-gray-700">
+          <Timer className="w-4 h-4 text-[#0094d9]" />
+          <span className="text-sm">{turn.barberService.timeOnMinutes} min</span>
+        </div>
+      )}
     </div>
   );
 }

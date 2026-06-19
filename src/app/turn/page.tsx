@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useTurn } from "@/hooks/useTurn";
 import TurnCard from "@/components/TurnCard";
 import { TurnStatus } from "@/types/turn";
+import { useTopbarAction } from "@/contexts/TopbarActionContext";
 
 const DAYS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 const MONTHS = [
@@ -25,6 +26,9 @@ const STATUS_OPTIONS: { value: TurnStatus; label: string }[] = [
 export default function TurnPage() {
   const {
     turns,
+    todayTurnsCount,
+    pendingTodayCount,
+    doneTodayCount,
     services,
     showModal,
     showCalendar,
@@ -63,17 +67,31 @@ export default function TurnPage() {
     ? `${selectedDate.getDate()} de ${MONTHS[selectedDate.getMonth()]} · ${selectedHour} hs`
     : "Seleccioná fecha y hora";
 
+  useTopbarAction(
+    <button
+      onClick={openModal}
+      className="bg-[#1a1a2e] text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-[#22223a] transition-colors cursor-pointer"
+    >
+      + Turno
+    </button>
+  );
+
   return (
     <div className="p-6">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Turnos</h1>
-        <button
-          onClick={openModal}
-          className="flex items-center gap-2 bg-[#0094d9] text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-[#007ab8] transition-colors cursor-pointer"
-        >
-          + Turno
-        </button>
+      {/* Métricas del día */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Turnos hoy</p>
+          <p className="text-3xl font-bold text-gray-800">{todayTurnsCount}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Pendientes</p>
+          <p className="text-3xl font-bold text-yellow-600">{pendingTodayCount}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Realizados</p>
+          <p className="text-3xl font-bold text-green-600">{doneTodayCount}</p>
+        </div>
       </div>
 
       {/* Grid de turnos */}

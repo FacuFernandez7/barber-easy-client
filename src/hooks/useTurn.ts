@@ -141,8 +141,26 @@ export function useTurn() {
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
 
+  const turnsWithDuration = turns.map((t) => ({
+    ...t,
+    barberService: {
+      ...t.barberService,
+      timeOnMinutes: services.find((s) => s.id === t.barberService.id)?.timeOnMinutes,
+    },
+  }));
+
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const todayStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+  const todayTurns = turns.filter((t) => t.appointmentDate.slice(0, 10) === todayStr);
+  const todayTurnsCount = todayTurns.length;
+  const pendingTodayCount = todayTurns.filter((t) => (t.status ?? "PENDING") === "PENDING").length;
+  const doneTodayCount = todayTurns.filter((t) => t.status === "DONE").length;
+
   return {
-    turns,
+    turns: turnsWithDuration,
+    todayTurnsCount,
+    pendingTodayCount,
+    doneTodayCount,
     services,
     showModal,
     selectedTurn,
